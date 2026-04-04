@@ -6,5 +6,5 @@ inputs:
     required: false
 
 runs:
-  using: node 24
+  using: node24
   main: dist/index.js
