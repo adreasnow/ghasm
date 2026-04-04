@@ -6,6 +6,6 @@ await import("./wasm_exec.js");
 
 const go = new Go();
 go.env = { ...process.env };
-WebAssembly.instantiateStreaming(wasmBytes, go.importObject).then((result) => {
+WebAssembly.instantiate(wasmBytes, go.importObject).then((result) => {
   go.run(result.instance);
 });
