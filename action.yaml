@@ -1,0 +1,10 @@
+name: Ghasm Test
+description: A GitHub action that tests the capabilites of being written in go and compiles to WASM
+inputs:
+  test:
+    description: Test input 1
+    required: false
+
+runs:
+  using: node 24
+  main: dist/index.js
