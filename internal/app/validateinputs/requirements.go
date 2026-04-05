@@ -3,7 +3,7 @@ package validateinputs
 import (
 	"context"
 
-	readinputs "github.com/adreasnow/ghasm/internal/pkg/readInputs"
+	readinputs "github.com/adreasnow/ghasm/internal/pkg/readinputs"
 	"github.com/adreasnow/ghasm/internal/pkg/validateinputs"
 	"golang.org/x/sync/errgroup"
 )

@@ -3,26 +3,22 @@ package validateinputs
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 
 	"github.com/adreasnow/ghasm/internal/pkg/validateinputs"
 	"github.com/sethvargo/go-githubactions"
 )
 
-var (
-	NoInputsError      = errors.New("Required input 'inputs' is not provided")
-	InvalidInputsError = errors.New("Failed to parse input 'inputs'")
-)
-
 func getProvidedInputs() (inputs validateinputs.Inputs, err error) {
 	rawInputs := githubactions.GetInput("inputs")
 	if rawInputs == "" {
-		err = NoInputsError
+		err = errors.New("Required input 'inputs' is not provided")
 		return nil, err
 	}
 
 	err = json.Unmarshal([]byte(rawInputs), &inputs)
 	if err != nil {
-		err = errors.Join(InvalidInputsError, err)
+		err = fmt.Errorf("Failed to parse input 'inputs': %w", err)
 		return nil, err
 	}
 
