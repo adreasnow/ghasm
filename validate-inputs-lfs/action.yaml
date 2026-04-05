@@ -1,0 +1,32 @@
+name: Validate Inputs
+description: validates the inputs of an action/workflow based on a set of specificed rules
+inputs:
+  inputs:
+    description: toJSON(inputs)
+    required: true
+  required:
+    description: Space delimeted string of required inputs
+    required: false
+  enum:
+    description: A mapping of an input to an enum of allowed values
+    required: false
+  and:
+    description: Inputs that must be provided together
+    required: false
+  or:
+    description: Inputs that must be mutually exclusive
+    required: false
+  required-or:
+    description: Inputs that must be mutually exclusive, but one of them must be provided
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: env
+      shell: bash
+      run: env
+
+    - name: Run action
+      shell: bash
+      run: chmod +x ${{ github.action_path }}/exec.bin && ${{ github.action_path }}/exec.bin
