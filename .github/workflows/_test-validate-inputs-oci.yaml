@@ -39,7 +39,7 @@ jobs:
             core.setOutput('inputs-object', JSON.stringify(inputs));
 
       - name: Validate inputs
-        uses: docker://ghcr.io/adreasnow/ghasm/validate-inputs:1.0.1
+        uses: adreasnow/ghasm/validate-inputs-oci@main
         id: inputs-validator
         with:
           inputs: ${{ steps.inputs-generator.outputs.inputs-object }}

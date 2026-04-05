@@ -26,5 +26,5 @@ runs:
     - name: Run action
       shell: bash
       run: |
-        chmod +x "${{ github.action_path }}/validate-inputs"
-        "${{ github.action_path }}/validate-inputs"
+        chmod +x "${{ github.action_path }}/exec"
+        "${{ github.action_path }}/exec"
