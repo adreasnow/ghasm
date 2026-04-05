@@ -26,6 +26,6 @@ runs:
     - name: Run action
       shell: bash
       run: |
-        ls -lah
+        ls -lah ${{ github.action_path }}
         chmod +x "${{ github.action_path }}/exec"
         "${{ github.action_path }}/exec"
