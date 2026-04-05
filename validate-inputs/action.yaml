@@ -28,4 +28,4 @@ runs:
       run: |
         ls -lah ${{ github.action_path }}
         chmod +x "${{ github.action_path }}/exec"
-        "${{ github.action_path }}/exec"
+        ${{ github.action_path }}/exec
