@@ -1,4 +1,4 @@
-name: Test Validate Inputs
+name: Test Validate Inputs OCI
 on:
   push:
     branches:
@@ -39,7 +39,7 @@ jobs:
             core.setOutput('inputs-object', JSON.stringify(inputs));
 
       - name: Validate inputs
-        uses: docker://ghcr.io/ghasm/validate-inputs:latest
+        uses: docker://ghcr.io/ghasm/validate-inputs:1.0.0
         id: inputs-validator
         with:
           inputs: ${{ steps.inputs-generator.outputs.inputs-object }}

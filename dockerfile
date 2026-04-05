@@ -9,6 +9,8 @@ COPY cmd/ ./cmd/
 RUN go build -ldflags="-s -w" -o exec ./cmd/validate-inputs
 
 FROM alpine:latest
+LABEL org.opencontainers.image.source=https://github.com/adreasnow/ghasm
+
 WORKDIR /action
 
 COPY --from=build /build/exec ./
