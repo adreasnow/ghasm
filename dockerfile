@@ -6,6 +6,7 @@ COPY go.mod go.sum  ./
 COPY internal/ ./internal/
 COPY cmd/ ./cmd/
 
+ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 RUN go build -ldflags="-s -w" -o exec ./cmd/validate-inputs
 
 FROM alpine:latest
