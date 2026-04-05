@@ -1,14 +1,8 @@
 name: Test Validate Inputs
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  push:
     branches:
       - main
-    paths:
-      - validate-inputs
-      - .github/workflows/_test-validate-inputs.yaml
   workflow_dispatch:
 
 concurrency:
