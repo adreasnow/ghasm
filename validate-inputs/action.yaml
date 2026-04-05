@@ -25,7 +25,4 @@ runs:
   steps:
     - name: Run action
       shell: bash
-      run: |
-        ls -lah ${{ github.action_path }}
-        chmod +x "${{ github.action_path }}/exec"
-        ${{ github.action_path }}/exec
+      run: chmod +x ${{ github.action_path }}/exec && ${{ github.action_path }}/exec
