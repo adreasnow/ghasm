@@ -23,6 +23,10 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: env
+      shell: bash
+      run: env
+
     - name: Run action
       shell: bash
       run: chmod +x ${{ github.action_path }}/exec && ${{ github.action_path }}/exec
