@@ -22,4 +22,4 @@ inputs:
 
 runs:
   using: docker
-  image: ghcr.io/adreasnow/ghasm:1.0.1
+  image: docker://ghcr.io/adreasnow/ghasm:1.0.1
