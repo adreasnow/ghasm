@@ -9,7 +9,7 @@ import (
 
 func main() {
 	if err := validateinputs.ValidateInputs(); err != nil {
-		githubactions.Debugf("%v", err)
+		githubactions.Debugf("error: %v", err)
 		os.Exit(1)
 	}
 }
