@@ -23,9 +23,9 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: env
+    - name: Setup Git LFS
       shell: bash
-      run: env
+      run: git lfs install && git lfs pull
 
     - name: Run action
       shell: bash
