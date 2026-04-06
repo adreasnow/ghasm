@@ -1,0 +1,56 @@
+name: Test Validate Inputs LFS
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  test-valid:
+    name: Test basic running
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          sparse-checkout: validate-inputs
+
+      - name: Generate inputs
+        id: inputs-generator
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const inputs = {
+              "required-input": "required-value",
+              "optional-input": "optional-value",
+              "enum-input": "option-1",
+              "and-input-1": "and-value",
+              "and-input-2": "and-value",
+              "or-input-1": "or-value",
+              "required-or-input-1": "required-or-value",
+            };
+            core.setOutput('inputs-object', JSON.stringify(inputs));
+
+      - name: Validate inputs
+        uses: adreasnow/ghasm/validate-inputs-wasi@main
+        id: inputs-validator
+        with:
+          inputs: ${{ steps.inputs-generator.outputs.inputs-object }}
+          required: >
+            required-input
+          enum: |
+            enum-input: [option-1, option-2]
+          and: |
+            - [and-input-1, and-input-2]
+          or: |
+            - [or-input-1, or-input-2]
+          required-or: |
+            - [required-or-input-1, required-or-input-2]
