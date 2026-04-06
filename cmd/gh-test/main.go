@@ -17,7 +17,7 @@ func main() {
 		githubactions.Fatalf("failed to get context: %v", err)
 	}
 
-	client := github.NewClient(nil).WithAuthToken(os.Getenv("ACTIONS_RUNTIME_TOKEN"))
+	client := github.NewClient(nil).WithAuthToken(os.Getenv("GITHUB_TOKEN"))
 
 	for _, env := range os.Environ() {
 		fmt.Println(env)

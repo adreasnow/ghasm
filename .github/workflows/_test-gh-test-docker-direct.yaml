@@ -1,4 +1,4 @@
-name: Test GH Test Docker
+name: Test GH Test Docker Direct
 on:
   push:
     branches:
@@ -19,4 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate inputs
-        uses: adreasnow/ghasm/gh-test@main
+        uses: docker://ghcr.io/adreasnow/ghasm/gh-test:1.0.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
