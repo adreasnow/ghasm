@@ -1,4 +1,4 @@
-name: Test Validate Inputs Docker Direct
+name: Test GH TestDocker Direct
 on:
   push:
     branches:
