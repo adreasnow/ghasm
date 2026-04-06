@@ -7,10 +7,11 @@ import { dirname, join } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// 1️⃣  Write a tiny resolv.conf next to the script (you can also generate it on‑the‑fly)
-await import("fs/promises").then(async (fs) => {
-  const resolvPath = join(__dirname, "resolv.conf");
-  await fs.writeFile(resolvPath, "nameserver 8.8.8.8\n");
+const resolvPath = join(__dirname, "resolv.conf");
+await readFile(resolvPath).catch(async () => {
+  await import("fs/promises").then((fs) =>
+    fs.writeFile(resolvPath, "nameserver 8.8.8.8\n"),
+  );
 });
 
 const wasi = new WASI({
@@ -22,7 +23,7 @@ const wasi = new WASI({
   },
   preopens: {
     "/": "/",
-    "/etc": join(__dirname, "."),
+    "/etc": __dirname,
   },
   network: true,
 });
