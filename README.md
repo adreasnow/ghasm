@@ -4,7 +4,16 @@ This is a repo for experiemnting with different was of publishing go-based GitHu
 
 ## Approaches Tried
 
-### Binary in action file
+| Approach                | Stability | Works | Type hints | Versioning Complexity | Build Complexity | Write Complexity         |
+| ----------------------- | --------- | ----- | ---------- | --------------------- | ---------------- | ------------------------ |
+| Bin in Action Dir       | high      | yes   | yes        | low                   | low              | medium (env var passing) |
+| Bin in Action Dir (LFS) | N/A       | no    | yes        | low                   | low              | medium (env var passing) |
+| OCI Artifacts           | none      | no    | yes        | low                   | low              | low                      |
+| Docker - Direct         | high      | yes   | no         | low                   | low              | low                      |
+| Docker - In Action      | high      | yes   | yes        | moderate              | moderat          | low                      |
+| WASI                    | preview   | ?     | yes        | low                   | high             | ?                        |
+
+### Binary in Action Dir
 
 [validate-inputs-bin](./validate-inputs-bin)
 [\_test-validate-inputs-bin.yaml](.github/workflows/_test-validate-inputs-bin.yaml)
@@ -39,7 +48,7 @@ There are two main ways to use this:
     - On the docker containers as tags
     - In the `action.yaml` files that reference the versioned docker images
 
-### ❌ WASI/WASM
+### WASI/WASM
 
 [validate-inputs-wasi](./validate-inputs-wasi)
 [\_test-validate-inputs-wasi.yaml](.github/workflows/_test-validate-inputs-wasi.yaml)
@@ -47,7 +56,6 @@ There are two main ways to use this:
 - WASI preview 1
   - Really cool in principle and could be used for completely sandboxed actions but given WASI's inability to make network calls, makes it a no-go.
 
-- WASI preview 2 - requires tinygo as compiler, and jco as post transpiler
-  -
+- ## WASI preview 2 - requires tinygo as compiler, and jco as post transpiler
 
 ###
