@@ -1,4 +1,4 @@
-name: Test GH TestDocker Direct
+name: Test GH Test Docker Direct
 on:
   push:
     branches:
