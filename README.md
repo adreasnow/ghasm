@@ -4,14 +4,15 @@ This is a repo for experiemnting with different was of publishing go-based GitHu
 
 ## Approaches Tried
 
-| Approach                | Stability | Works | Type hints | Versioning Complexity | Build Complexity | Write Complexity         |
-| ----------------------- | --------- | ----- | ---------- | --------------------- | ---------------- | ------------------------ |
-| Bin in Action Dir       | high      | yes   | yes        | low                   | low              | medium (env var passing) |
-| Bin in Action Dir (LFS) | N/A       | no    | yes        | low                   | low              | medium (env var passing) |
-| OCI Artifacts           | none      | no    | yes        | low                   | low              | low                      |
-| Docker - Direct         | high      | yes   | no         | low                   | low              | low                      |
-| Docker - In Action      | high      | yes   | yes        | moderate              | moderat          | low                      |
-| WASI                    | preview   | ?     | yes        | low                   | high             | ?                        |
+| Approach                | Stability | Works           | Speed       | Type hints | Versioning | Building | Writing  |
+| ----------------------- | --------- | --------------- | ----------- | ---------- | ---------- | -------- | -------- |
+| Bin in Action Dir       | high      | yes             | fast        | yes        | simple     | easy     | moderate |
+| Bin in Action Dir (LFS) | -         | no              | -           | yes        | simple     | easy     | moderate |
+| OCI Artifacts           | none      | no              | fast        | yes        | simple     | easy     | simple   |
+| Docker - Direct         | high      | yes             | fast + pull | no         | moderate   | easy     | simple   |
+| Docker - In Action      | high      | yes             | fast + pull | yes        | complex    | easy     | simple   |
+| WASM                    | preview   | yes (sandboxed) | fast        | yes        | simple     | annoying | complex  |
+| WASI                    | preview   | questionably    | crawls      | yes        | simple     | annoying | complex  |
 
 ### Binary in Action Dir
 
@@ -32,9 +33,9 @@ Would have been perfect but GitHub shelved the beta and
 
 ### Docker containers
 
-[validate-inputs-oci](./validate-inputs-oci)
-[\_test-validate-inputs-oci.yaml](.github/workflows/_test-validate-inputs-oci.yaml)
-[\_test-validate-inputs-oci-direct.yaml](.github/workflows/_test-validate-inputs-oci-direct.yaml)
+[validate-inputs-docker](./validate-inputs-docker)
+[\_test-validate-inputs-docker.yaml](.github/workflows/_test-validate-inputs-docker.yaml)
+[\_test-validate-inputs-docker-direct.yaml](.github/workflows/_test-validate-inputs-docker-direct.yaml)
 
 The most straightforward approach. Go binary is built/published in a docker container and set as the entrypoint
 
@@ -51,11 +52,9 @@ There are two main ways to use this:
 ### WASI/WASM
 
 [validate-inputs-wasi](./validate-inputs-wasi)
-[\_test-validate-inputs-wasi.yaml](.github/workflows/_test-validate-inputs-wasi.yaml)
 
 - WASI preview 1
   - Really cool in principle and could be used for completely sandboxed actions but given WASI's inability to make network calls, makes it a no-go.
 
 - ## WASI preview 2 - requires tinygo as compiler, and jco as post transpiler
-
-###
+  -
