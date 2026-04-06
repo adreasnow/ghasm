@@ -1,4 +1,4 @@
-name: Test Validate Inputs
+name: Test Validate Inputs Binary
 on:
   push:
     branches:
@@ -40,7 +40,7 @@ jobs:
             core.setOutput('inputs-object', JSON.stringify(inputs));
 
       - name: Validate inputs
-        uses: adreasnow/ghasm/validate-inputs@main
+        uses: adreasnow/ghasm/validate-inputs-bin@main
         id: inputs-validator
         with:
           inputs: ${{ steps.inputs-generator.outputs.inputs-object }}

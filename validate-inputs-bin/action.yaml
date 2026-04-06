@@ -22,11 +22,14 @@ inputs:
 
 runs:
   using: composite
+  env:
+    INPUT_INPUTS: ${{ inputs.inputs }}
+    INPUT_REQUIRED: ${{ inputs.required }}
+    INPUT_ENUM: ${{ inputs.enum }}
+    INPUT_AND: ${{ inputs.and }}
+    INPUT_OR: ${{ inputs.or }}
+    INPUT_REQUIRED_OR: ${{ inputs.required-or }}
   steps:
-    - name: env
-      shell: bash
-      run: env
-
     - name: Run action
       shell: bash
       run: chmod +x ${{ github.action_path }}/exec && ${{ github.action_path }}/exec

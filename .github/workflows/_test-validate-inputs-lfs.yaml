@@ -1,4 +1,4 @@
-name: Test Validate Inputs LFS
+name: Test Validate Inputs Binary in LFS
 on:
   push:
     branches:
