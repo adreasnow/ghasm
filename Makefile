@@ -15,8 +15,10 @@ build-validate-inputs-docker:
 	docker push ghcr.io/adreasnow/ghasm/validate-inputs:1.0.1
 
 build-gh-test-docker:
-	docker build --file=gh-test-docker/Dockerfile --platform=linux/amd64 -t ghcr.io/adreasnow/ghasm/gh-test:1.0.0 .
+	docker build --file=gh-test-docker/Dockerfile --platform=linux/amd64 -t ghcr.io/adreasnow/ghasm/gh-test:1.0.0 -t ghcr.io/adreasnow/ghasm/gh-test:1.0 -t ghcr.io/adreasnow/ghasm/gh-test:1 -t ghcr.io/adreasnow/ghasm/gh-test:main .
 	docker push ghcr.io/adreasnow/ghasm/gh-test:1.0.0
-
+	docker push ghcr.io/adreasnow/ghasm/gh-test:1.0
+	docker push ghcr.io/adreasnow/ghasm/gh-test:1
+	docker push ghcr.io/adreasnow/ghasm/gh-test:main
 
 .PHONY: build
