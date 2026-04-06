@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/google/go-github/v84/github"
 	"github.com/sethvargo/go-githubactions"
@@ -16,12 +17,9 @@ func main() {
 		githubactions.Fatalf("failed to get context: %v", err)
 	}
 
-	token, err := githubactions.GetIDToken(ctx, "?")
-	if err != nil {
-		githubactions.Fatalf("failed to get ID token: %v", err)
-	}
+	client := github.NewClient(nil).WithAuthToken(os.Getenv("GITHUB_TOKEN"))
 
-	client := github.NewClient(nil).WithAuthToken(token)
+	githubactions.Infof("token: %v", os.Getenv("GITHUB_TOKEN"))
 
 	repo, owner := ghCtx.Repo()
 
