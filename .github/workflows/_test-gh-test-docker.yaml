@@ -19,4 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate inputs
-        uses: adreasnow/ghasm/gh-test@main
+        uses: adreasnow/ghasm/gh-test-docker@main
