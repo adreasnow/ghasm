@@ -21,7 +21,7 @@ func main() {
 
 	githubactions.Infof("token: %v", os.Getenv("GITHUB_TOKEN"))
 
-	repo, owner := ghCtx.Repo()
+	owner, repo := ghCtx.Repo()
 
 	pr, _, err := client.PullRequests.List(ctx, owner, repo, &github.PullRequestListOptions{})
 	if err != nil {
