@@ -1,0 +1,21 @@
+name: Test Validate Inputs Docker Direct
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-valid:
+    name: Test basic running
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate inputs
+        uses: docker://ghcr.io/adreasnow/ghasm/gh-test:1.0.0

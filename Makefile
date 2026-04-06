@@ -8,7 +8,15 @@ build-validate-inputs-wasi1:
 	CGO_ENABLED=0 GOOS=wasip1 GOARCH=wasm go build -ldflags="-s -w" -o validate-inputs-wasi2/dist/main.wasm ./cmd/validate-inputs
 
 build-validate-inputs-wasi2:
-	docker build --file=validate-inputs-wasi/Dockerfile-wasi-build --output type=local,dest=validate-inputs-wasi/dist  .
+	docker build --file=validate-inputs-wasi/Dockerfile --output type=local,dest=validate-inputs-wasi/dist  .
+
+build-validate-inputs-docker:
+	docker build --file=validate-inputs-docker/Dockerfile --platform=linux/amd64 -t ghcr.io/adreasnow/ghasm/validate-inputs:1.0.2 .
+	docker push ghcr.io/adreasnow/ghasm/validate-inputs:1.0.1
+
+build-gh-test-docker:
+	docker build --file=gh-test-docker/Dockerfile --platform=linux/amd64 -t ghcr.io/adreasnow/ghasm/gh-test:1.0.0 .
+	docker push ghcr.io/adreasnow/ghasm/gh-test:1.0.0
 
 
 .PHONY: build

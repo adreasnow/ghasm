@@ -1,0 +1,6 @@
+name: GH Test WASI1
+description: Test if a wasi1 app can reach the network
+
+runs:
+  using: docker
+  image: docker://ghcr.io/adreasnow/ghasm/gh-test:1.0.0
