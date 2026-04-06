@@ -2,7 +2,7 @@ build-validate-inputs:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o validate-inputs/exec ./cmd/validate-inputs-bin
 
 build-gh-test-wasi1:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o gh-test-wasi1/dist/main.wasm ./cmd/gh-test
+	CGO_ENABLED=0 GOOS=wasip1 GOARCH=wasm go build -ldflags="-s -w" -o gh-test-wasi1/dist/main.wasm ./cmd/gh-test
 
 build-validate-inputs-wasi1:
 	CGO_ENABLED=0 GOOS=wasip1 GOARCH=wasm go build -ldflags="-s -w" -o validate-inputs-wasi2/dist/main.wasm ./cmd/validate-inputs
