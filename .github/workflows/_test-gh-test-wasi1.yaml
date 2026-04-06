@@ -1,0 +1,22 @@
+name: Test GH Test WASI1
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-valid:
+    name: Test basic running
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate inputs
+        uses: adreasnow/ghasm/gh-test-wasi1@main
+        id: inputs-validator

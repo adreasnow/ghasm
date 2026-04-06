@@ -9,6 +9,7 @@ const wasi = new WASI({
   preopens: {
     "/": "/",
   },
+  network: true,
 });
 
 const binary = await readFile(new URL("./main.wasm", import.meta.url));

@@ -17,11 +17,6 @@ jobs:
     name: Test basic running
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          sparse-checkout: validate-inputs
-
       - name: Generate inputs
         id: inputs-generator
         uses: actions/github-script@v8

@@ -51,10 +51,12 @@ There are two main ways to use this:
 
 ### WASI/WASM
 
-[validate-inputs-wasi](./validate-inputs-wasi)
+[validate-inputs-wasi1](./validate-inputs-wasi1)
+[validate-inputs-wasi2](./validate-inputs-wasi2)
+[\_test-validate-inputs-wasi1.yaml](.github/workflows/_test-validate-inputs-wasi1.yaml)
 
 - WASI preview 1
   - Really cool in principle and could be used for completely sandboxed actions but given WASI's inability to make network calls, makes it a no-go.
 
 - ## WASI preview 2 - requires tinygo as compiler, and jco as post transpiler
-  -
+  - Really painful to build, doesn't seem to run properly
