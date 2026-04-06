@@ -50,3 +50,4 @@ RUN npx esbuild \
 
 FROM scratch AS export-stage
 COPY --from=transpile /action.bundled.js /action.bundled.js
+COPY --from=transpile /transpile/action.core.wasm /action.core.wasm
