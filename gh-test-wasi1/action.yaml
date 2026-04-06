@@ -1,6 +1,6 @@
 name: GH Test WASI1
 description: Test if a wasi1 app can reach the network
-inputs:
+
 runs:
   using: node24
   main: dist/index.js
