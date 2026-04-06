@@ -13,12 +13,12 @@ func main() {
 
 	ctx := context.WithValue(context.Background(), "ghCtx", ghCtx)
 	if err != nil {
-		githubactions.Fatalf("failed to get context: %w", err)
+		githubactions.Fatalf("failed to get context: %v", err)
 	}
 
 	token, err := githubactions.GetIDToken(ctx, "?")
 	if err != nil {
-		githubactions.Fatalf("failed to get ID token: %w", err)
+		githubactions.Fatalf("failed to get ID token: %v", err)
 	}
 
 	client := github.NewClient(nil).WithAuthToken(token)
@@ -27,8 +27,8 @@ func main() {
 
 	pr, _, err := client.PullRequests.List(ctx, owner, repo, &github.PullRequestListOptions{})
 	if err != nil {
-		githubactions.Fatalf("failed to get pull request: %w", err)
+		githubactions.Fatalf("failed to get pull request: %v", err)
 	}
 
-	fmt.Println("%v", pr)
+	fmt.Printf("%v", pr)
 }
