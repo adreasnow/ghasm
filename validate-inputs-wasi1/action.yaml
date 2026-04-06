@@ -22,4 +22,4 @@ inputs:
 
 runs:
   using: node24
-  main: dist/action.bundled.js
+  main: dist/index.js
