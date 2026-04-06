@@ -1,4 +1,4 @@
-name: Test Validate Inputs WASI2
+name: Test Validate Inputs WAS1
 on:
   push:
     branches:
@@ -39,7 +39,7 @@ jobs:
             core.setOutput('inputs-object', JSON.stringify(inputs));
 
       - name: Validate inputs
-        uses: adreasnow/ghasm/validate-inputs-wasi2@main
+        uses: adreasnow/ghasm/validate-inputs-wasi1@main
         id: inputs-validator
         with:
           inputs: ${{ steps.inputs-generator.outputs.inputs-object }}
