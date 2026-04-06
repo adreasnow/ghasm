@@ -1,13 +1,28 @@
 import { WASI } from "wasi";
 import { readFile } from "fs/promises";
 import { argv } from "process";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// 1️⃣  Write a tiny resolv.conf next to the script (you can also generate it on‑the‑fly)
+await import("fs/promises").then(async (fs) => {
+  const resolvPath = join(__dirname, "resolv.conf");
+  await fs.writeFile(resolvPath, "nameserver 8.8.8.8\n");
+});
 
 const wasi = new WASI({
   version: "preview1",
   args: argv.slice(1),
-  env: process.env,
+  env: {
+    ...process.env,
+    RESOLV_CONF: "/etc/resolv.conf",
+  },
   preopens: {
     "/": "/",
+    "/etc": join(__dirname, "."),
   },
   network: true,
 });
